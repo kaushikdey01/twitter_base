@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body{
-            background-color: black;  
-        }
-        h1{
-            color: rgba(137, 43, 226, 0.694);
-        }
-    </style>
-</head>
-<body>
-    <h1> test template </h1>
-</body>
-</html>
+{% extends "layout.html" %}
+
+
+{% block title %}
+tweet page inside tweet app
+{% endblock  %}
+
+
+
+{% block content %}
+<h1 class = "text-purple-600 text-3xl text-center m-5 ">
+    welcome to a simple project
+</h1>
+{% endblock %}
