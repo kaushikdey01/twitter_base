@@ -1,6 +1,6 @@
 from django import forms
 from .models import Tweet
-# forms are made because the inputfields gib=ven by django are the only ones you want to use in your project
+# forms are made because the inputfields given by django are the only ones you want to use in your project
 
 
 
