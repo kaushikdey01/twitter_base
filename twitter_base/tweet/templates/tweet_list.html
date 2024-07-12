@@ -11,4 +11,34 @@ tweet page inside tweet app
 <h1 class = "text-purple-600 text-3xl text-center m-5 ">
     welcome to a simple project
 </h1>
+<div class=" w-1/5 text-center m-auto ">
+    
+    <a href="{% url 'tweet_create' %}" class="flex flex-row order-first  text-center justify-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out"> Create a tweet </a>
+</div>
+
+{% comment %} min-h-screen {% endcomment %}
+<div class = "flex items-center justify-center  container mx-auto">
+
+   
+
+    {% comment %} GRID {% endcomment %}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 order-last ">
+        {% for tweet in tweets %}
+        {% comment %} CARDs {% endcomment %} 
+        <div class="rounded-xl shadow-lg bg-gray-300 m-4">
+            <div class = "p-5 flex flex-col ">
+                <div clss="rounded-xl overflow-hidden ">
+                    {% if tweet.photo %} 
+                        <img src = {{tweet.photo.url}} alt="" class="h-50 w-60" />
+                    {% endif %}
+                </div>
+                <h5 class="text-2xl md:text-3xl font-medium mt-3 text-blue-500 "> {{tweet.user.username}} </h5>
+                <p class="text-slate-500 text-lg mt-3"> {{tweet.text}}
+                </p>
+                <a href="{% url 'tweet_edit' tweet.id %}" class="text-center bg-blue-400 text-blue-700 py-2 rounded-lg font-semibold mt-4 hover:bg-blue-300 focus:scale-95 transition-all duration-200 ease-out">Edit</a>
+                <a href="{% url 'tweet_delete' tweet.id %}" class="text-center bg-red-500 text-black py-2 rounded-lg font-semibold mt-4 hover:bg-red-300 focus:scale-95 transition-all duration-200 ease-out">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+
 {% endblock %}
