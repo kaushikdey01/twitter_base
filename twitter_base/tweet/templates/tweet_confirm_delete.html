@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+tweet page inside tweet app
+{% endblock  %}
+
+
+
+{% block content %}
+<h1 class = "text-purple-600 text-3xl text-center m-5 ">
+    Are you sure you want to delete?
+</h1>
+
+<form  method="post" class="flex flex-row align-middle justify-center gap-6 text-2xl hover:opacity-100
+">  
+{% csrf_token  %}
+    <button class= "text-black px-4 py-2 hover:text-red-300  bg-red-400 rounded-md">YES</button>
+    <a href={%url 'tweet_list' %} class="text-green-black px-4 py-2 hover:text-green-300  bg-green-600 rounded-md">NO</a>
+</form>
+
+{% endblock %}

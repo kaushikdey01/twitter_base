@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'twitter_base',
     'tweet',
     'tailwind',
     'theme',
@@ -135,3 +136,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = 'static/'
 STATATICFILES_DIR = [os.path.join(BASE_DIR,'static')]  
+
+# need to be changed manually loginurl, login redirect, logout redirect
+LOGIN_URL = '/accounts/login' 
+
+
+LOGIN_REDIRECT_URL = '/tweet/'
+LOGOUT_REDIRECT_URL = '/tweet/'

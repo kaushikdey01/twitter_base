@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+tweet page inside tweet app
+{% endblock  %}
+
+
+
+{% block content %}
+<h1 class = "text-purple-600 text-3xl text-center m-5 ">
+    welcome to a simple project
+</h1>
+
+<h2 class = "text-white text-center">
+    {% if form.instance.pk %}
+        Edit tweet
+    {% else %}
+        Create tweet
+    {% endif %}
+    <form method="post" enctype="multipart/form-data" class = "text-purple-600"  >
+        {% comment %} {{ form|crispy }} {% endcomment %}
+        {% csrf_token  %}
+        {% comment %} django takes care of this, it puts csrf token middleware in your code {% endcomment %}
+        {{form.as_p }}
+        {% comment %} makes the form render as a paragraph  {% endcomment %}
+        <button type="submit">Submit</button>
+    </form>
+    {% comment %} The enctype attribute specifies how the form-data should be encoded when submitting it to the server. it's a part of html. The enctype attribute can be used only if method="post". it is necessary if the user will upload a file {% endcomment %}
+</h2>
+
+
+{% endblock %}
