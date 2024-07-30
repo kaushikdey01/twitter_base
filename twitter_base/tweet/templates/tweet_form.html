@@ -1,33 +1,46 @@
 {% extends "layout.html" %}
+{% load form_tags %}
 
-
-{% block title %}
-tweet page inside tweet app
-{% endblock  %}
+{% block title %} tweet page inside tweet app {% endblock title %}
 
 
 
 {% block content %}
-<h1 class = "text-purple-600 text-3xl text-center m-5 ">
-    welcome to a simple project
-</h1>
+<div class="flex flex-col justify-center items-center  w-screen h-full ">
 
-<h2 class = "text-white text-center">
+{% if form.errors %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+        <strong class="font-bold">Errors:</strong>
+        <ul class="list-disc list-inside">
+            {% for field, errors in form.errors.items %}
+                <li>{{ errors.as_text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<h2 class="font-semibold text-3xl text-[#03e9f4]">
     {% if form.instance.pk %}
         Edit tweet
     {% else %}
         Create tweet
     {% endif %}
-    <form method="post" enctype="multipart/form-data" class = "text-purple-600"  >
+</h2>
+    <form method="post" enctype="multipart/form-data" class="text-purple-600 text-center text-lg "  >
         {% comment %} {{ form|crispy }} {% endcomment %}
-        {% csrf_token  %}
+        {% csrf_token %}
         {% comment %} django takes care of this, it puts csrf token middleware in your code {% endcomment %}
-        {{form.as_p }}
+        {% for field in form %}
+      <p>{{ field.label_tag }} {{ field|add_class:"form-input mt-1 block mx-auto w-auto text-black" }}</p>
+        {% endfor %}
         {% comment %} makes the form render as a paragraph  {% endcomment %}
-        <button type="submit">Submit</button>
+       {% comment %} <div class="my-8 bg-blue-800  w-20"> {% endcomment %}
+        <button type="submit" class="text-[#03e9f4] hover:rounded-md bg-slate-600 hover:bg-[#03e9f4] hover:text-white
+        font-bold transition-all duration-200 ease-out my-8 py-2.5 px-5 hover:shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]" >Submit</button>
+       {% comment %} </div> {% endcomment %}
     </form>
     {% comment %} The enctype attribute specifies how the form-data should be encoded when submitting it to the server. it's a part of html. The enctype attribute can be used only if method="post". it is necessary if the user will upload a file {% endcomment %}
-</h2>
+</div>
 
 
-{% endblock %}
+{% endblock content %}
